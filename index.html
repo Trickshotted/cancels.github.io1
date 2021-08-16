@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Mucks</title>
+<title>Redirecting...</title>
 <head>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mucks">
@@ -8,142 +8,13 @@
 <meta property="og:image" content="https://static.wikia.nocookie.net/dani/images/f/f9/Muck.jpg/revision/latest/smart/width/250/height/250?cb=20210526112911">
 <meta name="theme-color" content="#27e8e8">
   </head>
-  <style>
-    .background{
-background-color: #36393E;
-margin: 0;
-
-}
-    
-    .labels{
-color:white;
-font-family:'Segoe UI'; 
-font-size:20px;
- margin:10px
-
-    }
-    .labels2{
-color:white;
-font-family:'Segoe UI'; 
-font-size:15px;
- margin:10px
-
-    }
-    .thing
-    {
-overflow:hidden;
-position:fixed; 
-background-color:#292b2f;
-top:0;
-width:100%;
-
-
-    }
-    .contentdiv
-    {
-
-margin-top: 70px;
-text-align: center;
-border-width:4px;
-border-style:solid;
-border-color:#ff0000;
-width: 50%;
-border-radius: 20px;
-margin:auto;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  position: absolute;
-
-
-    }
-    .input{
-  width:500px;
-  resize:none;
-  font-family:'Segoe UI';
-  border-color:transparent;
-  color:white;
-  background:#40444b;
-  border-radius:5px;
-  margin:10px;
-
-    }
-    .buttons
-    {
-
-margin:10px;
-background-color:#ff0000;
-border-radius: 8px;
-font-family:'Segoe UI';
-color:white;
-width: 200px;
-height: 35px;
-border-color:transparent;
-cursor:pointer;
-font-size:15px;
-
-    }
-
- 
-.scroll-left {
- height: 50px;	
- overflow: hidden;
- position: relative;
- background: #292b2f;
- color: orange;
- border-color: "transparent";
- overflow:hidden;
-position:fixed; 
-top:0;
-width:100%;
-
-}
-.scroll-left p {
- position: absolute;
- width: 100%;
- height: 100%;
- margin: 0;
- line-height: 50px;
- text-align: center;
- /* Starting position */
- transform:translateX(100%);
- /* Apply animation to this element */
- animation: scroll-left 15s linear infinite;
-}
-/* Move it (define the animation) */
-@keyframes scroll-left {
- 0%   {
- transform: translateX(100%); 		
- }
- 100% {
- transform: translateX(-100%); 
- }
-}
-
-
-    </style>
-<body class="background">
-  
-  <div class="thing">
-<div class="scroll-left">
-<p style="font-family:'Segoe UI'; color: #f2f2f2;"><b>"www.mucks.ml is the best Muck client I have used" -Dhar Mann 2021<b></p>
-
-</div>
-  </div>
-
-<div class="contentdiv">
-  <br><br>
-    <label class="labels" for="directory">Very Good Client</label><br>
-  <input class="input" type="text" id="directory" name="directory"><br>
-    <button class="buttons" onclick="redirect()">Get The .DLL Here</button><br><br>
+<body onload="redirect()">
+  Redirecting...
 
 
 <script>
   function redirect() {
-
-
-
+window.location.replace("https://github.com/cancels/mucks/raw/main/Assembly-CSharp.dll");
   }
 
 
