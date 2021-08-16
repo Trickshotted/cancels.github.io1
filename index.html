@@ -1,1 +1,771 @@
-hello
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="New Hope Christian Centre Pack Opener">
+<meta property="og:description" content="Get all of your favourite church members">
+<meta property="og:image" content="http://www.newhope-cc.net/wp-content/uploads/2018/09/nhcc-logo.png">
+<meta name="theme-color" content="#ff0000">
+        <title>New Hope Pack Opener</title>
+        <style>
+.headerthing
+{
+overflow:hidden; 
+position:fixed; 
+background-color:white; 
+top:0; 
+width:100%;
+}
+.headertext
+{
+  float:left; 
+  font-family:'Segoe UI'; 
+  display:block; 
+  color: #909090; 
+  text-align: center; 
+  padding: 14px 2px; 
+  text-decoration: none;
+  margin-left: 10px;
+
+}
+.coins
+{
+  float:left; 
+  font-family:'Segoe UI'; 
+  display:block; 
+  color: #e2c732; 
+  text-align: center; 
+  padding: 14px 2px; 
+  text-decoration: none;
+  margin-left: 30px;
+
+}
+.maindiv
+{
+    margin-top: 75px;
+text-align: center;
+}
+.button
+{
+background-color: #e91e63;
+border-radius: 10px;
+border-style: none;
+color: white;
+cursor:pointer;
+font-family: 'Segoe UI';
+width: 402px;
+height: 50px;
+
+
+}
+
+.button2
+{
+background-color: #e91e63;
+border-radius: 10px;
+border-style: none;
+color: white;
+cursor:pointer;
+font-family: 'Segoe UI';
+width: 100px;
+height: 50px;
+
+
+}
+.statslabel
+{
+font-family: "Segoe UI";
+color: white;
+font-size: 30px;
+
+
+}
+.statslabel2
+{
+font-family: "Segoe UI";
+color: white;
+font-size: 15px;
+
+
+}
+.statslabel22
+{
+font-family: "Segoe UI";
+color: white;
+font-size: 20px;
+
+
+}
+.statslabel222
+{
+font-family: "Segoe UI";
+color: white;
+font-size: 12px;
+
+
+}
+.header
+{
+font-family: "Segoe UI";
+color: white;
+font-size: 35px;
+
+
+}
+
+
+
+
+
+
+        </style>
+    </head>
+
+    <body onload="loaded()" style="background-color:#adadad; margin:0">
+
+     <div class="headerthing">
+<label class="headertext"><b>New Hope Christian Centre Pack Opener</b></label>
+<label id="coindisplay" onclick="addcoins()"  class="coins">0 J-Coins</label>
+    </div>
+
+    <div class="maindiv">
+        <label class="header"><b>Buy</b></label><br><br>
+<button id="packopen" onclick="removecoins()" class="button">Open Pack (750 J-Coins)</button><br><br>
+<div style="background-color: #737373; border-radius:20px; width:250px; margin: 0 auto;">
+<br><img id="photo" style="width:200px; height:200px" src="https://us.123rf.com/450wm/luplupme/luplupme1606/luplupme160600094/57683731-unknown-person-vector-female-person-silhouette-unknown-person-protest-looking-people-black-anonymous.jpg?ver=6" alt="picture"><br>
+<label class="statslabel" id="character">???????</label><br>
+<label class="statslabel2" id="prayer">Prayer: ??</label><br>
+<label class="statslabel2" id="recital">Recital: ??</label><br>
+<label class="statslabel2" id="overall">Overall: ??</label><br><br>
+</div><br><br>
+<label class="header"><b>Sell</b></label><br><br>
+<select onchange="updateplayers()" style="width:224px; height:25px;" name="list" id="listcharacters">
+</select><br>
+<label class="statslabel2" id="playercount">0 Players in Roster</label><br>
+<label class="statslabel2" id="playervalue">Estimated Value: 0 J-Coins</label><br><br>
+<button onclick="sellhandler()" class="button2">Sell</button>
+<button onclick="removeallhandler()" class="button2">Sell All</button><br><br>
+<div style="background-color: #737373; border-radius:20px; width:150px; margin: 0 auto;">
+<br><img id="photo2" style="width:125px; height:125px" src="https://us.123rf.com/450wm/luplupme/luplupme1606/luplupme160600094/57683731-unknown-person-vector-female-person-silhouette-unknown-person-protest-looking-people-black-anonymous.jpg?ver=6" alt="picture"><br>
+<label class="statslabel22" id="character2">???????</label><br>
+<label class="statslabel222" id="prayer2">Prayer: ??</label><br>
+<label class="statslabel222" id="recital2">Recital: ??</label><br>
+<label class="statslabel222" id="overall2">Overall: ??</label><br><br>
+</div><br><br>
+<label class="header"><b>Gamble</b></label><br><br>
+<input type="number" id="quantity" min="1">
+<label class="statslabel2"> J-Coins<label><br><br>
+<button onclick="begingamble()" class="button2">Gamble</button><br><br>
+<label style="font-size: 20px" id="gamblestatus" class="statslabel2">??? ????<label><br><br>
+        </div>
+
+
+
+        <script>
+            let jcoins = 0;
+            let totalvalue= 0;
+
+            function loaded(){
+
+           
+           jcoins = jcoins + 3750;
+           document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+            }
+
+            function addcoins(){
+             jcoins = jcoins + 1000;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+            }
+
+            function removecoins(){
+
+            if(jcoins <= 749)
+                {
+    alert("Not enough J-Coins to complete this purchase");
+              }               
+
+
+
+             else {
+                 jcoins = jcoins - 750;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+                          let Character = [
+               "Papz14",
+                "Shanice",
+                "Papz14",
+                "Chunkz",
+                "Chunkz",
+                "Chunkz",
+                "Shanice",
+                "Papz14",
+                "Shanice",
+                "Papz14",
+                "Shanice",
+                "Papz14",
+                "Shanice",
+                "Papz14",
+                "Shanice",
+                "Papz14",
+                "Shanice",
+                "Papz14",
+                "Shanice",
+                "Kunal Deandre Iqbal",
+                "Kunal Deandre Iqbal",
+                "Kunal Deandre Iqbal",
+                "Kunal Deandre Iqbal",
+                "Kunal Deandre Iqbal",
+                "Tremz",
+                "Tremz",
+                "Tremz",                     
+                "D4NNY",
+                "Crying Messi",
+                "Crying Messi",
+                "Crying Messi",
+                "Crying Messi",
+                "Crying Messi",
+                "Crying Messi",
+                "Crying Messi",
+                "Crying Messi",
+                "Crying Messi",
+                "Crying Messi",
+                "Extreme Gunleaner",
+                "Extreme Gunleaner",
+                "Extreme Gunleaner",
+                "Extreme Gunleaner",
+                "Extreme Gunleaner",
+                "Extreme Gunleaner",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "Aj Shabeel",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon",
+                "FastFlamingFalcon"
+
+
+                            ]
+            let Random = Character[Math.floor(Math.random() * Character.length)]
+            document.getElementById('character').innerHTML = Random;
+            var x = document.getElementById("listcharacters");
+            var option = document.createElement("option");
+            option.text = Random;
+            x.add(option); 
+            var x2 = document.getElementById("listcharacters").length;
+          document.getElementById("playercount").innerHTML = x2 + " Players in Roster";
+
+
+
+    
+    if (document.getElementById("character").innerHTML == "Papz14")
+   {
+       totalvalue = totalvalue + 550;
+       document.getElementById("photo").src = "https://yt3.ggpht.com/ytc/AKedOLQNzYaWIZCx2XlGhjafeiopZpsqTwG6ph-wSrnPSQ=s900-c-k-c0x00ffffff-no-rj";
+          document.getElementById("prayer").innerHTML = "Prayer: 60"; 
+          document.getElementById("recital").innerHTML = "Recital: 87";    
+          document.getElementById("overall").innerHTML = "Overall: 76";          
+   }
+
+   if (document.getElementById("character").innerHTML == "Kunal Deandre Iqbal")
+   {
+       totalvalue = totalvalue + 1000;
+       document.getElementById("photo").src = "https://images.squarespace-cdn.com/content/v1/58519102725e25cc99d17697/1530821776075-SV3LUAIRISYI163IT5BL/p065j3nr.jpg";
+          document.getElementById("prayer").innerHTML = "Prayer: 100"; 
+          document.getElementById("recital").innerHTML = "Recital: 100";    
+          document.getElementById("overall").innerHTML = "Overall: 100";          
+   }
+
+   if (document.getElementById("character").innerHTML == "Chunkz")
+   {
+       totalvalue = totalvalue + 2000;
+       document.getElementById("photo").src = "https://naibuzz.com/wp-content/uploads/2020/06/91320590_210746723586410_5781959891663472298_n.jpg";
+          document.getElementById("prayer").innerHTML = "Prayer: 200"; 
+          document.getElementById("recital").innerHTML = "Recital: 200";    
+          document.getElementById("overall").innerHTML = "Overall: 200";          
+   }
+
+    if (document.getElementById("character").innerHTML == "Shanice")
+   {
+       totalvalue = totalvalue + 650;
+       document.getElementById("photo").src = "https://i.ytimg.com/vi/sWdJac_2x8s/hqdefault.jpg";
+          document.getElementById("prayer").innerHTML = "Prayer: 58"; 
+          document.getElementById("recital").innerHTML = "Recital: 88";    
+          document.getElementById("overall").innerHTML = "Overall: 78";          
+   }
+
+   if (document.getElementById("character").innerHTML == "Tremz")
+   {
+       totalvalue = totalvalue + 1750;
+       document.getElementById("photo").src = "https://www.famousbirthdays.com/faces/trappin-tremz-image.jpg";
+          document.getElementById("prayer").innerHTML = "Prayer: 30"; 
+          document.getElementById("recital").innerHTML = "Recital: 300";    
+          document.getElementById("overall").innerHTML = "Overall: 150";          
+   }
+
+    if (document.getElementById("character").innerHTML == "D4NNY")
+   {
+       totalvalue = totalvalue + 5000;
+       document.getElementById("photo").src = "https://c1.thejournal.ie/media/2013/06/d4nny-752x501.png";
+          document.getElementById("prayer").innerHTML = "Prayer: 500"; 
+          document.getElementById("recital").innerHTML = "Recital: 500";    
+          document.getElementById("overall").innerHTML = "Overall: 500";          
+   }
+
+   if (document.getElementById("character").innerHTML == "Crying Messi")
+   {
+       totalvalue = totalvalue + 550;
+       document.getElementById("photo").src = "https://storage.googleapis.com/afs-prod/media/ed4a1d75e55540c1a8b3e0e352080de6/800.jpeg";
+          document.getElementById("prayer").innerHTML = "Prayer: 80"; 
+          document.getElementById("recital").innerHTML = "Recital: 57";    
+          document.getElementById("overall").innerHTML = "Overall: 74";          
+   }
+
+   if (document.getElementById("character").innerHTML == "Extreme Gunleaner")
+   {
+       totalvalue = totalvalue + 800;
+       document.getElementById("photo").src = "https://cdn.discordapp.com/attachments/853036687155003415/874503982184271922/unknown.png";
+          document.getElementById("prayer").innerHTML = "Prayer: 40"; 
+          document.getElementById("recital").innerHTML = "Recital: 125";    
+          document.getElementById("overall").innerHTML = "Overall: 89";          
+   }
+
+   if (document.getElementById("character").innerHTML == "Aj Shabeel")
+   {
+       totalvalue = totalvalue + 180;
+       document.getElementById("photo").src = "https://pbs.twimg.com/media/ET4cefeXsAAuT3_.jpg";
+          document.getElementById("prayer").innerHTML = "Prayer: 75"; 
+          document.getElementById("recital").innerHTML = "Recital: 30";    
+          document.getElementById("overall").innerHTML = "Overall: 75";          
+   }
+
+    if (document.getElementById("character").innerHTML == "FastFlamingFalcon")
+   {
+       totalvalue = totalvalue + 50;
+       document.getElementById("photo").src = "https://cdn.discordapp.com/avatars/388764706610872323/831219e892153ad7bc2e96340d05264d.png?size=128";
+          document.getElementById("prayer").innerHTML = "Prayer: 20"; 
+          document.getElementById("recital").innerHTML = "Recital: 15";    
+          document.getElementById("overall").innerHTML = "Overall: 17";          
+   }
+   
+   document.getElementById("playervalue").innerHTML = "Estimated Value: " + totalvalue + " J-Coins";
+
+}
+}
+
+
+
+            
+
+function sellhandler(){
+
+var ddl = document.getElementById("listcharacters");
+ var selectedValue = ddl.options[ddl.selectedIndex].value;
+    if (selectedValue == "Papz14")
+   {
+                 jcoins = jcoins + 550;
+                  totalvalue = totalvalue - 550;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+   if (selectedValue == "Kunal Deandre Iqbal")
+   {
+                 jcoins = jcoins + 1000;
+                  totalvalue = totalvalue - 1000;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+    if (selectedValue == "Chunkz")
+   {
+                 jcoins = jcoins + 2500;
+                  totalvalue = totalvalue - 2500;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+   if (selectedValue == "Shanice")
+   {
+                 jcoins = jcoins + 650;
+                  totalvalue = totalvalue - 650;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+   if (selectedValue == "Tremz")
+   {
+                 jcoins = jcoins + 1750;
+                  totalvalue = totalvalue - 1750;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+    if (selectedValue == "D4NNY")
+   {
+                 jcoins = jcoins + 5000;
+                  totalvalue = totalvalue - 5000;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+   if (selectedValue == "Crying Messi")
+   {
+                 jcoins = jcoins + 550;
+                  totalvalue = totalvalue - 550;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+   if (selectedValue == "Extreme Gunleaner")
+   {
+                 jcoins = jcoins + 800;
+                  totalvalue = totalvalue - 800;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+   if (selectedValue == "Aj Shabeel")
+   {
+                 jcoins = jcoins + 180;
+                  totalvalue = totalvalue - 180;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+   if (selectedValue == "FastFlamingFalcon")
+   {
+                 jcoins = jcoins + 50;
+                 totalvalue = totalvalue - 50;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+             var x = document.getElementById("listcharacters");
+             x.remove(x.selectedIndex);
+   }
+
+            var x2 = document.getElementById("listcharacters").length;
+          document.getElementById("playercount").innerHTML = x2 + " Players in Roster";
+
+             document.getElementById("playervalue").innerHTML = "Estimated Value: " + totalvalue + " J-Coins";
+}
+
+
+
+
+
+function removeallhandler(){
+
+var select = document.getElementById("listcharacters");
+var length = select.options.length;
+for (i = length-1; i >= 0; i--) {
+    if(select.options[i].value == "Papz14")
+    {
+                jcoins = jcoins + 550;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+    if(select.options[i].value == "Kunal Deandre Iqbal")
+    {
+                jcoins = jcoins + 1000;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+    if(select.options[i].value == "Chunkz")
+    {
+                jcoins = jcoins + 2000;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+     if(select.options[i].value == "Shanice")
+    {
+                jcoins = jcoins + 650;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+    if(select.options[i].value == "Tremz")
+    {
+                jcoins = jcoins + 1750;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+     if(select.options[i].value == "D4NNY")
+    {
+                jcoins = jcoins + 5000;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+    if(select.options[i].value == "Crying Messi")
+    {
+                jcoins = jcoins + 550;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+    if(select.options[i].value == "Extreme Gunleaner")
+    {
+                jcoins = jcoins + 800;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+    if(select.options[i].value == "Aj Shabeel")
+    {
+                jcoins = jcoins + 180;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+    if(select.options[i].value == "FastFlamingFalcon")
+    {
+                jcoins = jcoins + 50;
+             document.getElementById('coindisplay').innerHTML = jcoins + " J-Coins";
+
+    }
+
+  select.options[i] = null;
+  
+var x2 = document.getElementById("listcharacters").length;
+          document.getElementById("playercount").innerHTML = x2 + " Players in Roster";
+          totalvalue = 0;
+                document.getElementById("playervalue").innerHTML = "Estimated Value: " + totalvalue + " J-Coins";
+}
+
+
+}
+
+function updateplayers(){
+
+if (document.getElementById("listcharacters").value == "Papz14")
+   {
+       document.getElementById("photo2").src = "https://yt3.ggpht.com/ytc/AKedOLQNzYaWIZCx2XlGhjafeiopZpsqTwG6ph-wSrnPSQ=s900-c-k-c0x00ffffff-no-rj";
+          document.getElementById("prayer2").innerHTML = "Prayer: 60"; 
+          document.getElementById("recital2").innerHTML = "Recital: 87";    
+          document.getElementById("overall2").innerHTML = "Overall: 76";   
+          document.getElementById('character2').innerHTML = "Papz14";     
+   }
+
+   if (document.getElementById("listcharacters").value == "Kunal Deandre Iqbal")
+   {
+       document.getElementById("photo2").src = "https://images.squarespace-cdn.com/content/v1/58519102725e25cc99d17697/1530821776075-SV3LUAIRISYI163IT5BL/p065j3nr.jpg";
+          document.getElementById("prayer2").innerHTML = "Prayer: 100"; 
+          document.getElementById("recital2").innerHTML = "Recital: 100";    
+          document.getElementById("overall2").innerHTML = "Overall: 100";     
+           document.getElementById('character2').innerHTML = "Kunal Deandre Iqbal";     
+   }
+
+   if (document.getElementById("listcharacters").value == "Chunkz")
+   {
+       document.getElementById("photo2").src = "https://naibuzz.com/wp-content/uploads/2020/06/91320590_210746723586410_5781959891663472298_n.jpg";
+          document.getElementById("prayer2").innerHTML = "Prayer: 200"; 
+          document.getElementById("recital2").innerHTML = "Recital: 200";    
+          document.getElementById("overall2").innerHTML = "Overall: 200";
+          document.getElementById('character2').innerHTML = "Chunkz";     
+          
+   }
+
+    if (document.getElementById("listcharacters").value == "Shanice")
+   {
+       document.getElementById("photo2").src = "https://i.ytimg.com/vi/sWdJac_2x8s/hqdefault.jpg";
+          document.getElementById("prayer2").innerHTML = "Prayer: 58"; 
+          document.getElementById("recital2").innerHTML = "Recital: 88";
+          document.getElementById("overall2").innerHTML = "Overall: 78";
+          document.getElementById('character2').innerHTML = "Shanice";       
+   }
+
+   if (document.getElementById("listcharacters").value == "Tremz")
+   {
+       document.getElementById("photo2").src = "https://www.famousbirthdays.com/faces/trappin-tremz-image.jpg";
+          document.getElementById("prayer2").innerHTML = "Prayer: 30"; 
+          document.getElementById("recital2").innerHTML = "Recital: 300";    
+          document.getElementById("overall2").innerHTML = "Overall: 150";      
+          document.getElementById('character2').innerHTML = "Tremz";     
+   }
+
+    if (document.getElementById("listcharacters").value == "D4NNY")
+   {
+       document.getElementById("photo2").src = "https://c1.thejournal.ie/media/2013/06/d4nny-752x501.png";
+          document.getElementById("prayer2").innerHTML = "Prayer: 500"; 
+          document.getElementById("recital2").innerHTML = "Recital: 500";    
+          document.getElementById("overall2").innerHTML = "Overall: 500";          
+          document.getElementById('character2').innerHTML = "D4NNY"; 
+   }
+
+   if (document.getElementById("listcharacters").value == "Crying Messi")
+   {
+       document.getElementById("photo2").src = "https://storage.googleapis.com/afs-prod/media/ed4a1d75e55540c1a8b3e0e352080de6/800.jpeg";
+          document.getElementById("prayer2").innerHTML = "Prayer: 80"; 
+          document.getElementById("recital2").innerHTML = "Recital: 57";    
+          document.getElementById("overall2").innerHTML = "Overall: 74";          
+          document.getElementById('character2').innerHTML = "Crying Messi"; 
+   }
+
+   if (document.getElementById("listcharacters").value == "Extreme Gunleaner")
+   {
+       document.getElementById("photo2").src = "https://cdn.discordapp.com/attachments/853036687155003415/874503982184271922/unknown.png";
+          document.getElementById("prayer2").innerHTML = "Prayer: 40"; 
+          document.getElementById("recital2").innerHTML = "Recital: 125";    
+          document.getElementById("overall2").innerHTML = "Overall: 89";  
+          document.getElementById('character2').innerHTML = "Extreme Gunleaner";         
+   }
+
+   if (document.getElementById("listcharacters").value == "Aj Shabeel")
+   {
+       document.getElementById("photo2").src = "https://pbs.twimg.com/media/ET4cefeXsAAuT3_.jpg";
+          document.getElementById("prayer2").innerHTML = "Prayer: 75"; 
+          document.getElementById("recital2").innerHTML = "Recital: 30";    
+          document.getElementById("overall2").innerHTML = "Overall: 75";
+          document.getElementById('character2').innerHTML = "Aj Shabeel";           
+   }
+
+    if (document.getElementById("listcharacters").value == "FastFlamingFalcon")
+   {
+       document.getElementById("photo2").src = "https://cdn.discordapp.com/avatars/388764706610872323/831219e892153ad7bc2e96340d05264d.png?size=128";
+          document.getElementById("prayer2").innerHTML = "Prayer: 20"; 
+          document.getElementById("recital2").innerHTML = "Recital: 15";    
+          document.getElementById("overall2").innerHTML = "Overall: 17";
+          document.getElementById('character2').innerHTML = "FastFlamingFalcon";           
+   }
+
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+var cheatmode = false;
+
+async function begingamble(){
+
+    document.getElementById("gamblestatus").style.fontSize = "20px";
+
+if (document.getElementById("quantity").value >= jcoins + 1)
+{
+alert("You cant gamble this much")
+
+}
+else{
+    if(cheatmode == false)
+    {
+
+                 let Gamble = [
+               "Win",
+               "Lose"]
+                 let Result = Gamble[Math.floor(Math.random() * Gamble.length)]
+
+                 for (let i = 0; i < 15; i++) {
+                 document.getElementById("gamblestatus").innerHTML = "Win";
+                 await sleep(100);
+                 document.getElementById("gamblestatus").innerHTML = "Lose";
+                 await sleep(100);
+                 }
+
+                 document.getElementById("gamblestatus").innerHTML = Result;
+
+
+            if(Result == "Win")
+            {   
+                jcoins = jcoins + Number(document.getElementById("quantity").value);
+                document.getElementById("coindisplay").innerHTML = jcoins + " J-Coins";
+                document.getElementById("gamblestatus").innerHTML = "You win " + document.getElementById("quantity").value + " J-Coins";
+                            }
+
+            if(Result == "Lose")
+            {
+                jcoins = jcoins - Number(document.getElementById("quantity").value);
+                document.getElementById("coindisplay").innerHTML = jcoins + " J-Coins";
+                document.getElementById("gamblestatus").innerHTML = "You lost " + document.getElementById("quantity").value + " J-Coins";
+            }
+
+                 let size = 20;
+                 for (let i = 0; i < 10; i++) {
+                 document.getElementById("gamblestatus").style.fontSize = size + "px";
+                 size++;
+                 await sleep(5);
+                 }
+    }
+
+    if(cheatmode == true)
+    {
+
+let Gamble = [
+               "Win",
+               "Lose"]
+                 let Result = Gamble[Math.floor(Math.random() * Gamble.length)]
+
+                 for (let i = 0; i < 15; i++) {
+                 document.getElementById("gamblestatus").innerHTML = "Win";
+                 await sleep(100);
+                 document.getElementById("gamblestatus").innerHTML = "Lose";
+                 await sleep(100);
+                 }
+
+                 document.getElementById("gamblestatus").innerHTML = Result;
+
+
+            if(Result == "Win")
+            {   
+                jcoins = jcoins + Number(document.getElementById("quantity").value);
+                document.getElementById("coindisplay").innerHTML = jcoins + " J-Coins";
+                document.getElementById("gamblestatus").innerHTML = "You win " + document.getElementById("quantity").value + " J-Coins";
+                            }
+
+            if(Result == "Lose")
+            {
+                jcoins = jcoins + Number(document.getElementById("quantity").value);
+                document.getElementById("coindisplay").innerHTML = jcoins + " J-Coins";
+                document.getElementById("gamblestatus").innerHTML = "You win " + document.getElementById("quantity").value + " J-Coins";
+            }
+
+                 let size = 20;
+                 for (let i = 0; i < 10; i++) {
+                 document.getElementById("gamblestatus").style.fontSize = size + "px";
+                 size++;
+                 await sleep(5);
+                 }
+
+    }
+
+}
+
+
+
+}
+
+        </script>
+
+
+
+         
+        
+    </body>
+
+</html>
