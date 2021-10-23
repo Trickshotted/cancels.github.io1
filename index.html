@@ -32,7 +32,7 @@ function create(){
 
 client.query(
   q.Get(
-    q.Match(q.Index('posts_by_name'), document.getElementById("name").value.replace(\/s\g, "-"))
+    q.Match(q.Index('posts_by_name'), document.getElementById("name").value.replace(/\s/g, "-"))
   )
 )
 .then((ret) => 
