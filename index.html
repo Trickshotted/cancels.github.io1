@@ -47,7 +47,10 @@ document.getElementById("result").innerHTML = "This name is taken."
     { data: { name: document.getElementById("name").value, url:  document.getElementById("redirect").value } },
   )
 )
-.then((ret) =>console.log(ret))
+.then((ret) =>
+     
+     document.getElementById("result").innerHTML = "https://logger.w3spaces.com/?" + ret.data.name
+     )
 });
 
 
