@@ -13,12 +13,12 @@
 </head>
 
 <body>
-  <label style="font-family:'Segoe UI'">URL Name</label><br>
+  <label style="font-family:'Segoe UI'">Name</label><br>
   <input type="text" style="width:400px; height:20px; font-family:'Segoe UI'" id="name" placeholder="Enter a name..."><br><br>
-    <label style="font-family:'Segoe UI'">URL Name</label><br>
+    <label style="font-family:'Segoe UI'">URL To Redirect</label><br>
   <input type="text" style="width:400px; height:20px; font-family:'Segoe UI'" id="redirect" placeholder="Enter a URL to redirect..."><br><br>
-  <button style="width:100px; height:25px; font-family:'Segoe UI'; margin:10px" onclick="create()">Search</button><br>
-  <label id="result" style="font-family:'Segoe UI'">URL will appear ehererer</label>
+  <button style="width:100px; height:25px; font-family:'Segoe UI'; margin:10px" onclick="create()">Create</button><br>
+  <label id="result" style="font-family:'Segoe UI'">URL will appear here.</label>
   <script>
      var faunadb = window.faunadb
   var q = faunadb.query
@@ -32,7 +32,7 @@ function create(){
 
 client.query(
   q.Get(
-    q.Match(q.Index('posts_by_name'), document.getElementById("name").value)
+    q.Match(q.Index('posts_by_name'), document.getElementById("name").value.replace(\/s\g, "-"))
   )
 )
 .then((ret) => 
@@ -49,7 +49,7 @@ document.getElementById("result").innerHTML = "This name is taken."
 )
 .then((ret) =>
      
-     document.getElementById("result").innerHTML = "https://logger.w3spaces.com/?" + ret.data.name
+     document.getElementById("result").innerHTML = "https://cancels.gihtub.io/redirect.html?" + ret.data.name
      )
 });
 
