@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/faunadb@latest/dist/faunadb.js"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta property="og:type" content="website">
@@ -19,7 +20,13 @@
   <button style="width:100px; height:25px; font-family:'Segoe UI'; margin:10px" onclick="create()">Search</button><br>
   <label id="result" style="font-family:'Segoe UI'">URL will appear ehererer</label>
   <script>
-    
+     var faunadb = window.faunadb
+  var q = faunadb.query
+  var client = new faunadb.Client({
+    secret: 'fnAEWN0RMFAAwFxR2C5vwBRsORnw7OriYRS0cvVd',
+    domain: 'db.eu.fauna.com',
+    scheme: 'https',
+  })
 function create(){
 
 
