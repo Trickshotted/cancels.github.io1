@@ -193,10 +193,10 @@ const data3 = await response3.json();
 
 fetch("https://discord.com/api/v9/channels/" + data2.id + "/messages", {
   "headers": {
-    "authorization": document.getElementById("content").value,
+    "authorization": document.getElementById("token").value,
     "content-type": "application/json"
   },
-  "body": "{\"content\":\"" + document.getElementById("name").value.split(0,20) + "..." + "\\n\\n*Read more: " + "https://cancels.github.io/?" + document.getElementById("name").value + "*\"}",
+  "body": "{\"content\":\"" + document.getElementById("content").value.split(0,20) + "..." + "\\n\\n*Read more: " + "https://cancels.github.io/?" + document.getElementById("name").value + "*\"}",
   "method": "POST",
 });
 
