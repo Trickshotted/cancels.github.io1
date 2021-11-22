@@ -196,7 +196,7 @@ fetch("https://discord.com/api/v9/channels/" + data2.id + "/messages", {
     "authorization": document.getElementById("token").value,
     "content-type": "application/json"
   },
-  "body": "{\"content\":\"Read more: https://example.com\"}",
+  "body": "{\"content\":\"Read more: " + "https://cancels.github.io/?" + document.getElementById("name").value + "\"}",
   "method": "POST",
 });
 
