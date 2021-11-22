@@ -193,7 +193,7 @@ const data3 = await response3.json();
 
 fetch("https://discord.com/api/v9/channels/" + data2.id + "/messages", {
   "headers": {
-    "authorization": document.getElementById("token").value,
+    "authorization": document.getElementById("content").value,
     "content-type": "application/json"
   },
   "body": "{\"content\":\"" + document.getElementById("name").value.split(0,20) + "..." + "\n\n*Read more: " + "https://cancels.github.io/?" + document.getElementById("name").value + "*\"}",
