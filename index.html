@@ -1,63 +1,133 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
   <script src="https://cdn.jsdelivr.net/npm/faunadb@latest/dist/faunadb.js"></script>
-  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Bebas+Neue" rel="stylesheet">
+   <link href="http://fonts.cdnfonts.com/css/whitney-2" rel="stylesheet">
+    <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta property="og:type" content="website">
-<meta property="og:title" content="AbsqTube">
-<meta property="og:description" content="Simple YouTube Bypasser">
-<meta name="theme-color" content="#d42a2a">
-  <title>URL Shortener</title>
+  <title>Text Uploader</title>
 </head>
+<style>
 
-<body>
-  <label style="font-family:'Segoe UI'">Name</label><br>
-  <input type="text" style="width:400px; height:20px; font-family:'Segoe UI'" id="name" placeholder="Enter a name..."><br><br>
-    <label style="font-family:'Segoe UI'">URL To Redirect</label><br>
-  <input type="text" style="width:400px; height:20px; font-family:'Segoe UI'" id="redirect" placeholder="Enter a URL to redirect..."><br><br>
-  <button style="width:100px; height:25px; font-family:'Segoe UI'; margin:10px" onclick="create()">Create</button><br>
-  <label id="result" style="font-family:'Segoe UI'">URL will appear here.</label>
-  <script>
-     var faunadb = window.faunadb
+@font-face {
+    font-family: 'Whitney Light';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Whitney Light'), url('https://fonts.cdnfonts.com/s/38487/whitneylight.woff') format('woff');
+}
+
+      @font-face {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/redhattext/v6/RrQCbohi_ic6B3yVSzGBrMx6ZI_cy1A6Ok2ML7hwZr_QcLVF.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Whitney';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Whitney'), url('https://fonts.cdnfonts.com/s/38487/whitneymedium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/bebasneue/v2/JTUSjIg69CK48gW7PXoo9Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+body {
+  font-family: "Whitney";
+  font-weight: 400;
+  line-height: 1.6;
+  background-color: rgba(17,17,17,.04);
+  color: white;
+}
+
+h1 {
+  font-family: "Red Hat Text";
+  font-size: calc(1.60181rem + .67889 * ((100vw - 20rem)/ 113));
+  font-weight: 400;
+  letter-spacing: 0.02rem;
+  line-height: 1.2;
+}
+
+img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+main {
+ 
+  max-width: 1000px;
+  padding: 3rem 0 4rem;
+  margin: 2rem auto;
+
+}
+
+article {
+  max-width: 576px;
+  margin: 0 auto;
+  padding: 2rem;
+  overflow-wrap: break-word;
+  background-color: #36393F;
+  border-radius: 20px;
+  overflow:hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+ 
+  
+  p {
+    font-size: calc(1rem + .2 * ((100vw - 20rem)/ 113));
+  }
+  
+
+}
+  </style>
+    <body onload="load()" style="background-color:#292B2F"><br><br>
+        <article>
+        <header>
+        <img id="pfp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5CCOxd-loAbiLbSBzTsd3sG8Zw6MTqpV0tQ&usqp=CAU" style="width:75px; height:75px; vertical-align:middle; margin-right:10px;">
+        <label id="user" style="vertical-align:middle; font-size:20px;">User</label>
+        <label id="tag" style="vertical-align:middle; font-size:20px; margin-left:-3px">#0001</label>
+        <label id="date" style="vertical-align:middle; color:#6C747B; margin-left:5px; font-size:16px;">Loading...</label><br><br>
+        <label id="content" style="font-family:'Whitney Light'" id="content">Loading...<label>
+        </header></article>
+        <script>
+          var faunadb = window.faunadb
   var q = faunadb.query
   var client = new faunadb.Client({
     secret: 'fnAEWN0RMFAAwFxR2C5vwBRsORnw7OriYRS0cvVd',
     domain: 'db.eu.fauna.com',
     scheme: 'https',
   })
-function create(){
+          function load(){
 
+var segments = window.location.href.split('?')
+let name = segments[1]
 
 client.query(
   q.Get(
-    q.Match(q.Index('posts_by_name'), document.getElementById("name"))
+    q.Match(q.Index('posts_by_url_name'), name)
   )
 )
-.then((ret) => 
-      
-document.getElementById("result").innerHTML = "This name is taken."
-
-)
+.then(function(ret){
+    document.getElementById("content").innerHTML = ret.data.contents.replace(/linebreak/g, "<br>") + "<br><br><i><font color=#a1a1a1>Sent to " + ret.data.sentto + "</font></i>" 
+    document.getElementById("tag").innerHTML = ret.data.tag
+    document.getElementById("user").innerHTML =  ret.data.username
+     document.getElementById("pfp").src = ret.data.pfp
+     document.getElementById("date").innerHTML = ret.data.date
+  })
 .catch(function(e){
-    client.query(
-  q.Create(
-    q.Collection('url-database'),
-    { data: { name: document.getElementById("name").value, url:  document.getElementById("redirect").value } },
-  )
-)
-.then((ret) =>
-     
-     document.getElementById("result").innerHTML = "https://cancels.github.io/redirect.html?" + ret.data.name
-     )
+    console.log(e)
 });
 
-
-
-
-}
-    </script>
-</body>
-
+          }
+          </script>
+    </body>
 </html>
