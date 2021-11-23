@@ -124,11 +124,13 @@ client.query(
   )
 )
 .then(function(ret){
+  
+  var localdate = new Date(ret.data.date);
     document.getElementById("content").firstChild.nodeValue = ret.data.contents.replace(/linebreak/g, "<br>") 
     document.getElementById("tag").innerHTML = ret.data.tag
     document.getElementById("user").innerHTML =  ret.data.username
      document.getElementById("pfp").src = ret.data.pfp
-     document.getElementById("date").innerHTML = ret.data.date
+     document.getElementById("date").innerHTML = localdate
   document.getElementById("sentat").innerHTML = "<i>Sent to " + ret.data.sentto + "</i>"
   })
 .catch(function(e){
