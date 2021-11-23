@@ -102,7 +102,8 @@ article {
         <label id="user" style="vertical-align:middle; font-size:20px;">User</label>
         <label id="tag" style="vertical-align:middle; font-size:20px; margin-left:-3px">#0001</label>
         <label id="date" style="vertical-align:middle; color:#6C747B; margin-left:5px; font-size:16px;">Loading...</label><br><br>
-        <label id="content" style="font-family:'Whitney Light'" id="content">Loading...<label>
+        <label id="content" style="font-family:'Whitney Light'" id="content">Loading...<label><br><br>
+        <label id="sentat" style="font-family:'Whitney Light'; color:#a1a1a1" id="content">Loading...<label><br><br>
         </header></article>
         <script>
           var faunadb = window.faunadb
@@ -123,11 +124,12 @@ client.query(
   )
 )
 .then(function(ret){
-    document.getElementById("content").firstChild.nodeValue = ret.data.contents.replace(/linebreak/g, "<br>") + "<br><br><i><font color=#a1a1a1>Sent to " + ret.data.sentto + "</font></i>" 
+    document.getElementById("content").firstChild.nodeValue = ret.data.contents.replace(/linebreak/g, "<br>") 
     document.getElementById("tag").innerHTML = ret.data.tag
     document.getElementById("user").innerHTML =  ret.data.username
      document.getElementById("pfp").src = ret.data.pfp
      document.getElementById("date").innerHTML = ret.data.date
+  document.getElementById("sentat").innerHTML = "<i>Sent to " + ret.data.sentto + "</i>"
   })
 .catch(function(e){
     console.log(e)
