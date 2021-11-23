@@ -6,7 +6,7 @@
   <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text" rel="stylesheet">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Disclonger || Upload</title>
+  <title>DiscLogger</title>
 </head>
   <style>
 
@@ -113,11 +113,11 @@ button:hover {
   <form style="border:1px solid #ccc">
   <div class="container">
     <h1 style="color:white">Capture a Discord Message</h1>
-    <p style="color:white">Capture a Discord message</p>
+    <p id="result" style="color:white">Log Discord Messages in a Permanent URL.</p>
     <hr>
     
      <label style="color:white" for="token"><b>Token</b></label>
-    <input type="text" placeholder="Enter a token..." name="token" id="token" required>
+    <input type="password" placeholder="Enter a token..." name="token" id="token" required>
 
      <label style="color:white" for="channelid"><b>Channel ID</b></label>
     <input type="text" placeholder="Enter an ID..." name="channelid" id="channelid" required>
@@ -199,7 +199,7 @@ const data3 = await response3.json();
   )
 )
 .then((ret) =>
-     console.log(ret)
+     document.getElementById("result").innerHTML = "Success! Your URL is https://cancels.github.io/?" + ret.data.url
      )
 });
 
