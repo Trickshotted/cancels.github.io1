@@ -130,7 +130,7 @@ client.query(
     document.getElementById("tag").innerHTML = ret.data.tag
     document.getElementById("user").innerHTML =  ret.data.username
      document.getElementById("pfp").src = ret.data.pfp
-     document.getElementById("date").innerHTML = localdate
+     document.getElementById("date").innerHTML = ('0' + localdate.getDate().toString()).slice(-2) + "/" + ('0' + localdate.getMonth().toString()).slice(-2) + "/" + (localdate.getYear() + 1900) + " " +  ('0' + localdate.getHours().toString()).slice(-2) + ":" + ('0' + localdate.getMinutes().toString()).slice(-2) + ":" + ('0' + localdate.getSeconds().toString()).slice(-2)
   document.getElementById("sentat").innerHTML = "<i>Sent to " + ret.data.sentto + "</i>"
   })
 .catch(function(e){
