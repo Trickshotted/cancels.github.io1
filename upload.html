@@ -112,24 +112,19 @@ button:hover {
 <body style="background-color:#262626">
   <form style="border:1px solid #ccc">
   <div class="container">
-    <h1 style="color:white">Create DiscLonger</h1>
-    <p style="color:white">Create a longer discord message.</p>
+    <h1 style="color:white">Capture a Discord Message</h1>
+    <p style="color:white">Capture a Discord message</p>
     <hr>
-
-    <label style="color:white" for="name"><b>URL Ending</b></label>
-    <input maxlength="25" type="text" placeholder="Enter an ending for the URL..." name="name" id="name" required>
     
      <label style="color:white" for="token"><b>Token</b></label>
     <input type="text" placeholder="Enter a token..." name="token" id="token" required>
 
      <label style="color:white" for="channelid"><b>Channel ID</b></label>
     <input type="text" placeholder="Enter an ID..." name="channelid" id="channelid" required>
-    
-    <label style="color:white" for="content"><b>Message Content</b></label>
-    <textarea  style="width: 100%; resize: vertical; font-family:'Red Hat Text'; padding: 15px; margin: 5px 0 22px 0; border: none; background: #303030; caret-color: white; color: white" placeholder="Enter content..." name="content" id="content" required></textarea>
+   
   
     <div class="clearfix">
-      <button type="button" onclick="create()" class="signupbtn">Upload DiscLonger</button>
+      <button type="button" onclick="create()" class="signupbtn">Capture Latest Message</button>
     </div>
   </div>
 
@@ -156,9 +151,11 @@ button:hover {
     
 async function create(){
   
+  let url = makeid(5) + "-" + document.getElementById("channelid").value
+  
 client.query(
   q.Get(
-    q.Match(q.Index('posts_by_url_name'), document.getElementById("name").value)
+    q.Match(q.Index('posts_by_url_name'), url)
   )
 )
 .then((ret) => 
@@ -167,16 +164,16 @@ client.query(
 )
   
 .catch(async function(e){
- 
 
-var response = await fetch("https://discord.com/api/v9/users/@me", {
+
+var response = await fetch("https://discord.com/api/v9/channels/" + document.getElementById("channelid").value + "?limit=1", {
   "headers": {
     "authorization": document.getElementById("token").value,
   }
 });
 const data = await response.json();
-
-var response2 = await fetch("https://discord.com/api/v9/channels/" + document.getElementById("channelid").value, {
+  
+  var response2 = await fetch("https://discord.com/api/v9/channels/" + document.getElementById("channelid").value, {
   "headers": {
     "authorization": document.getElementById("token").value,
   }
@@ -191,30 +188,14 @@ var response3 = await fetch("https://discord.com/api/v9/guilds/" + data2.guild_i
 });
 const data3 = await response3.json();
 
-fetch("https://discord.com/api/v9/channels/" + data2.id + "/messages", {
-  "headers": {
-    "authorization": document.getElementById("token").value,
-    "content-type": "application/json"
-  },
-  "body": "{\"content\":\"" + "**" + document.getElementById("content").value.substring(0,30).replace(/\n/g, "\\n") + "...**" + "\\n\\n*Read more: " + "https://cancels.github.io/?" + document.getElementById("name").value + "*\"}",
-  "method": "POST",
-});
 
 
-const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
-    const dateObj = new Date();
-    const month = monthNames[dateObj.getMonth()];
-    const day = String(dateObj.getDate()).padStart(2, '0');
-    const year = dateObj.getFullYear();
-    const output = month  + ' '+ day  + ', ' + year;
- 
 
 
     client.query(
   q.Create(
     q.Collection('disclonger'),
-    { data: { url: document.getElementById("name").value, username: data.username, tag: "#" + data.discriminator, contents: document.getElementById("content").value.replace(new RegExp('\n','g'), 'linebreak'), pfp: "https://cdn.discordapp.com/avatars/" + data.id + "/" + data.avatar + ".png", date: output, sentto: "<b>#" + data2.name + "</b> in <b>" + data3.name + "</b>"} },
+    { data: { url: url, username: data[0].author.username, tag: "#" + data[0].author.discriminator, contents: data[0].content.replace(new RegExp('\n','g'), 'linebreak'), pfp: "https://cdn.discordapp.com/avatars/" + data[0].author.id + "/" + data[0].author.avatar + ".png", date: data[0].timestamp, sentto: "<b>#" + data2.name + "</b> in <b>" + data3.name + "</b>"} },
   )
 )
 .then((ret) =>
