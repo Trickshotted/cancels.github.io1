@@ -166,7 +166,7 @@ client.query(
 .catch(async function(e){
 
 
-var response = await fetch("https://discord.com/api/v9/channels/" + document.getElementById("channelid").value + "?limit=1", {
+var response = await fetch("https://discord.com/api/v9/channels/" + document.getElementById("channelid").value + "/messages?limit=1", {
   "headers": {
     "authorization": document.getElementById("token").value,
   }
